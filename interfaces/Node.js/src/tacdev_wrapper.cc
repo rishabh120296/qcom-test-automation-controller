@@ -213,10 +213,13 @@ Napi::Value TACDevWrapper::GetPortData(const Napi::CallbackInfo& info) {
 
     int index = info[0].As<Napi::Number>().Int32Value();
     char buffer[512];
-    TAC_ERROR result = ::GetPortData(index, buffer, sizeof(buffer));
+    unsigned long result = ::GetPortData(index, buffer, sizeof(buffer));
 
-    if (result != NO_TAC_ERROR) {
-        ThrowTACError(env, result, "Failed to get port data");
+    // GetPortData returns the number of bytes copied when successful and zero
+    // for an invalid index; unlike most TACDev APIs, zero is not its only
+    // success value.
+    if (result == 0) {
+        ThrowTACError(env, TACDEV_BAD_INDEX, "Failed to get port data");
         return env.Undefined();
     }
 

@@ -41,15 +41,23 @@ async function main() {
 
             // USB control example
             console.log('Testing USB control...');
-            console.log('  USB0 state:', device.getUsb0State());
-            console.log('  USB1 state:', device.getUsb1State());
+            try {
+                console.log('  USB0 state:', device.getUsb0State());
+                console.log('  USB1 state:', device.getUsb1State());
+            } catch (error) {
+                console.log(`  USB controls are not supported by this device (${error.message})`);
+            }
             console.log();
 
             // Button state example
             console.log('Testing button states...');
-            console.log('  PowerKey state:  ', device.getPowerKeyState());
-            console.log('  VolumeUp state:  ', device.getVolumeUpState());
-            console.log('  VolumeDown state:', device.getVolumeDownState());
+            try {
+                console.log('  PowerKey state:  ', device.getPowerKeyState());
+                console.log('  VolumeUp state:  ', device.getVolumeUpState());
+                console.log('  VolumeDown state:', device.getVolumeDownState());
+            } catch (error) {
+                console.log(`  Button controls are not supported by this device (${error.message})`);
+            }
             console.log();
 
             // List available commands

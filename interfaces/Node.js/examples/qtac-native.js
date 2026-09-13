@@ -34,6 +34,8 @@ class Device {
     getHardware() { return this.nativeDevice.getHardware(); }
     getHardwareVersion() { return this.nativeDevice.getHardwareVersion(); }
     getUUID() { return this.nativeDevice.getUUID(); }
+    getResetCount() { return this.nativeDevice.getResetCount(); }
+    clearResetCount() { return this.nativeDevice.clearResetCount(); }
 
     setBatteryState(value) { return this.nativeDevice.setBatteryState(value); }
     getBatteryState() { return this.nativeDevice.getBatteryState(); }
@@ -47,6 +49,10 @@ class Device {
     getVolumeUpState() { return this.nativeDevice.getVolumeUpState(); }
     setVolumeDown(value) { return this.nativeDevice.setVolumeDown(value); }
     getVolumeDownState() { return this.nativeDevice.getVolumeDownState(); }
+    setPrimaryEDL(value) { return this.nativeDevice.setPrimaryEDL(value); }
+    getPrimaryEDLState() { return this.nativeDevice.getPrimaryEDLState(); }
+    setSecondaryEDL(value) { return this.nativeDevice.setSecondaryEDL(value); }
+    getSecondaryEDLState() { return this.nativeDevice.getSecondaryEDLState(); }
 
     getCommandCount() { return this.nativeDevice.getCommandCount(); }
     getCommand(index) { return this.nativeDevice.getCommand(index); }
@@ -58,17 +64,25 @@ class Device {
 
     getQuickCommandCount() { return this.nativeDevice.getQuickCommandCount(); }
     getQuickCommand(index) { return this.nativeDevice.getQuickCommand(index); }
-    powerOn() { return this.nativeDevice.powerOnButton(); }
-    powerOff() { return this.nativeDevice.powerOffButton(); }
-    bootToFastboot() { return this.nativeDevice.bootToFastBootButton(); }
-    bootToUEFI() { return this.nativeDevice.bootToUEFIMenuButton(); }
-    bootToEDL() { return this.nativeDevice.bootToEDLButton(); }
+    powerOnButton() { return this.nativeDevice.powerOnButton(); }
+    powerOffButton() { return this.nativeDevice.powerOffButton(); }
+    bootToFastBootButton() { return this.nativeDevice.bootToFastBootButton(); }
+    bootToUEFIMenuButton() { return this.nativeDevice.bootToUEFIMenuButton(); }
+    bootToEDLButton() { return this.nativeDevice.bootToEDLButton(); }
+    bootToSecondaryEDLButton() { return this.nativeDevice.bootToSecondaryEDLButton(); }
+    powerOn() { return this.powerOnButton(); }
+    powerOff() { return this.powerOffButton(); }
+    bootToFastboot() { return this.bootToFastBootButton(); }
+    bootToUEFI() { return this.bootToUEFIMenuButton(); }
+    bootToEDL() { return this.bootToEDLButton(); }
+    bootToSecondaryEDL() { return this.bootToSecondaryEDLButton(); }
 
     getScriptVariableCount() { return this.nativeDevice.getScriptVariableCount(); }
     getScriptVariable(index) { return this.nativeDevice.getScriptVariable(index); }
     updateScriptVariable(variable, value) {
         return this.nativeDevice.updateScriptVariableValue(variable, value);
     }
+    isCommandQueueClear() { return this.nativeDevice.isCommandQueueClear(); }
 }
 
 const QTAC = {
